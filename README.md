@@ -1,1 +1,1 @@
-# Curso-Oracle-ONE-fun-es-e-listas
+# Curso-Oracle-ONE-funçõs-e-listas
