@@ -1,13 +1,36 @@
-let numAleatorio = gerarNumeroAletorio()
+let numAleatorio = gerarNumeroAletorio();
+let tentativas = 0;
 
-function impimir(){
-    console.log('hahahahah');
+function NewGame(){
+    tentativas = 0;
+    numAleatorio = gerarNumeroAletorio();
+    atualizarElemento(tag ='h1', texto='Jogo do número secreto');
+    atualizarElemento('input',null);
+    document.getElementById('reiniciar').setAttribute('disabled', true);
 };
 
+function contator(num){
+    return num += 1;
+};
 
 function verificarChute(){
-    let chute = parseInt(document.querySelector('input').value);
-    console.log(chute == numAleatorio);
+    
+    let chute = document.querySelector('input').value;
+        
+    tentativas = contator(tentativas)
+
+    if (chute == numAleatorio){
+        atualizarElemento(tag ='h1', texto=`Você acertou! o numero é ${chute}. Você fez ${tentativas} tentativa(s)!`);
+        document.getElementById('reiniciar').removeAttribute('disabled');
+        
+    } else if (chute >= numAleatorio){
+        atualizarElemento(tag ='h1', texto='O numero deve ser menor!');
+        atualizarElemento('input',null);
+        
+    }else{
+        atualizarElemento(tag ='h1', texto='O numero deve ser maior!');
+        atualizarElemento('input',null);
+    };
 
 };
 
@@ -15,8 +38,12 @@ function verificarChute(){
 function atualizarElemento(tag , texto){
     
 
-    let elemento = document.querySelector(tag);
-    elemento.innerHTML =texto;
+    if (tag == 'input'){
+        document.querySelector('input').value = texto;
+    } else{
+        let elemento = document.querySelector(tag);
+        elemento.innerHTML =texto;
+    };
 };
 
 
