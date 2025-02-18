@@ -1,12 +1,15 @@
+let lista_num = []
 let numAleatorio = gerarNumeroAletorio();
 let tentativas = 0;
 
 function NewGame(){
+
     tentativas = 0;
     numAleatorio = gerarNumeroAletorio();
     atualizarElemento(tag ='h1', texto='Jogo do número secreto');
     atualizarElemento('input',null);
     document.getElementById('reiniciar').setAttribute('disabled', true);
+    console.log(lista_num)
 };
 
 function contator(num){
@@ -48,7 +51,17 @@ function atualizarElemento(tag , texto){
 
 
 function gerarNumeroAletorio(){
-     return parseInt(Math.random() * 10 +1);
+    let numRandom = parseInt(Math.random() * 10 +1);
+
+    if (lista_num.length == 10){
+        lista_num = [];
+    }
+    if(lista_num.includes(numRandom)){
+        return gerarNumeroAletorio();
+    }else{
+        lista_num.push(numRandom);
+        return numRandom
+    }; 
 };
 
 
